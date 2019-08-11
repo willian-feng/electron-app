@@ -1,0 +1,19 @@
+{
+  "name": "App",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+	"packageOs": "electron-packager . App --out ./build --arch=x64 --platform=darwin --asar --app-version=0.1.0 --electron-version=6.0.1",
+    "packageWin": "electron-packager . App --out ./build --arch=x64 --platform=win32 --asar --app-version=0.1.0 --electron-version=6.0.1",
+    "packageLinux": "electron-packager . App --out ./build --arch=x64 --platform=linux --asar --app-version=0.1.0 --electron-version=6.0.1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^6.0.1"
+  }
+}
