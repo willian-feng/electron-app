@@ -2,12 +2,12 @@
   "name": "app",
   "version": "1.0.0",
   "description": "Electron App",
-  "main": ".",
+  "main": "public/",
   "scripts": {
     "pack": "electron-builder --dir",
     "build:win": "electron-builder -w",
     "build:linux": "electron-builder -l deb tar.xz",
-    "start": "electron .",
+    "start": "electron ./public/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -21,8 +21,8 @@
   },
   "build": {
     "appId": "com.wilian.app.electronbuild",
-    "productName": "Electron App",
-    "copyright": "@Copy right",
+    "productName": "ElectronApp",
+    "copyright": "copyright @ f",
     "directories": {
       "output": "build"
     },
@@ -30,19 +30,18 @@
       "oneClick": false,
       "allowElevation": true,
       "allowToChangeInstallationDirectory": true,
-      "installerIcon": "./build/icons/aaa.ico",
-      "uninstallerIcon": "./build/icons/bbb.ico",
-      "installerHeaderIcon": "./build/icons/aaa.ico",
+      "installerIcon": "./public/favicon.png",
+      "uninstallerIcon": "./public/favicon.png",
+      "installerHeaderIcon": "./public/favicon.png",
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "app",
-      "include": "build/script/installer.nsh",
-      "artifactName": "${productName}-setup-${version}.${ext}"
+      "shortcutName": "app"
     },
     "files": [
       "src/**/*",
       "node_modules/**/*",
-      "package.json"
+      "package.json",
+      "public/**/*"
     ],
     "publish": [
       {
@@ -66,25 +65,26 @@
       ]
     },
     "mac": {
-      "icon": "static/icons/favicon.ico",
+      "icon": "public/favicon.png",
       "target": [
         "zip",
         "dmg"
       ]
     },
     "win": {
-      "icon": "static/icons/favicon.ico",
+      "icon": "public/favicon.png",
       "target": [
-        {
-          "target": "nsis",
-          "arch": [
-            "ia32"
-          ]
-        }
+        "nsis",
+        "zip"
       ]
     },
     "linux": {
-      "icon": "static/icons"
+      "icon": "public/"
     }
+  },
+  "dependencies": {
+    "antd": "^3.21.4",
+    "cmn-utils": "^1.0.9",
+    "dva": "^2.4.1"
   }
 }
