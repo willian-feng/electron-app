@@ -1,19 +1,13 @@
 import React from 'react';
-import { connect } from 'dva';
 import { Layout } from 'antd';
 import { Switch, routerRedux } from 'dva/router';
-import { LeftSideBar } from '@/components/SideBar';
+// import { LeftSideBar } from '@/components/SideBar';
 import pathToRegexp from 'path-to-regexp';
-import { enquireIsMobile } from '@/utils/enquireScreen';
 import $$ from 'cmn-utils';
 import cx from 'classnames';
 
 const { Content, Header } = Layout;
 
-import HocErrorCatch from '@/components/HandleException'
-
-@connect(({ global }) => ({ global }))
-@HocErrorCatch
 export default class BasicLayout extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -34,42 +28,20 @@ export default class BasicLayout extends React.PureComponent {
       leftCollapsedWidth: 60, // 左边栏宽度
       showSidebarHeader: false, // 左边栏头部开关
       user,
+      theme: {},
       currentMenu: {},
       isMobile: false
     };
 
   }
 
-  componentDidMount() {
-    this.unregisterEnquire = enquireIsMobile(ismobile => {
-      const { isMobile, theme } = this.state;
-      if (isMobile !== ismobile) {
-        // 如查是移动端则不固定侧边栏
-        if (ismobile && $$.isArray(theme.layout)) {
-          theme.layout = theme.layout.filter(item => item !== 'fixedSidebar');
-        }
-        this.setState({
-          isMobile: ismobile
-        });
-      }
-    });
-  }
-
   componentWillMount() {
-    let homePage;
-    let homePageUrl;
-    const smisPost = user.smisPost;
-    if (smisPost) {
-      homePage = smisPost.homePage;
-    }
-    if (homePage) {
-      homePageUrl = homePage.url;
-    }
-    if (homePage) {
-      this.props.dispatch(routerRedux.replace(homePageUrl));
-    }
+
   }
 
+  componentDidMount() {
+
+  }
 
   componentWillUnmount() {
     // 清理监听
@@ -147,8 +119,7 @@ export default class BasicLayout extends React.PureComponent {
       currentMenu,
       isMobile
     } = this.state;
-    const { routerData, location, global } = this.props;
-    const { menu, flatMenu } = global;
+    const { routerData, location } = this.props;
     const { childRoutes } = routerData;
     const classnames = cx('basic-layout', 'full-layout', {
       fixed: theme.layout && theme.layout.indexOf('fixedSidebar') !== -1,
@@ -166,7 +137,7 @@ export default class BasicLayout extends React.PureComponent {
           {/**顶部功能栏 */}
         </Header>
         <Layout>
-          <LeftSideBar
+          {/*<LeftSideBar
             collapsed={collapsedLeftSide}
             leftCollapsedWidth={leftCollapsedWidth}
             showHeader={showSidebarHeader}
@@ -177,7 +148,7 @@ export default class BasicLayout extends React.PureComponent {
             currentMenu={currentMenu}
             menu={menu}
             user={user}
-            isMobile={isMobile} />
+            isMobile={isMobile} />*/}
           <Content>
             <Switch>{childRoutes}</Switch>
           </Content>

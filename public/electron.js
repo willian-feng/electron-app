@@ -1,6 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const { autoUpdater } = require('electron-updater');
 const path = require('path');
+const url = require('url');
+const IS_DEV = process.env.NODE_ENV === 'development';
 
 const feedUrl = `http://127.0.0.1:5500/win32`; // 更新包位置
 
@@ -20,8 +22,16 @@ function createWindow() {
     }
   });
 
-  // 加载index.html文件
-  win.loadFile('./index.html');
+  // 加载应用
+  const staticIndexPath = path.join(__dirname, './index.html');
+  const main = IS_DEV
+    ? `http://localhost:3210`
+    : url.format({
+        pathname: staticIndexPath,
+        protocol: 'file:',
+        slashes: true
+      });
+  win.loadFile(main);
 
   // 打开开发者工具
   win.webContents.openDevTools();

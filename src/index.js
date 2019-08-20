@@ -1,4 +1,4 @@
-import { LocaleProvider } from 'antd';
+import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 import dva from 'dva';
 import createLoading from 'dva-loading';
@@ -11,7 +11,7 @@ import { unregister } from './serviceWorker';
 // -> 初始化
 const app = dva({
   history: createHashHistory({
-    basename: '/static'
+    basename: '/'
   })
 });
 
@@ -23,9 +23,9 @@ app.model(require('./models').default);
 
 // -> 初始化路由
 app.router(({ history, app }) => (
-  <LocaleProvider locale={zhCN}>
+  <ConfigProvider locale={zhCN}>
     <Router history={history}>{createRoutes(app)}</Router>
-  </LocaleProvider>
+  </ConfigProvider>
 ));
 
 // -> Start
@@ -41,3 +41,17 @@ export default {
 // 如果想可以离线使用，请使用register()代替unregister()。可能会带来一些问题，如缓存等
 // 相关资料，可以从 https://bit.ly/CRA-PWA 了解
 unregister();
+
+// var ipcRenderer = require('electron').ipcRenderer
+// ipcRenderer.send("checkForUpdate");
+// ipcRenderer.on("message", (event, text) => {
+//   console.log(arguments);
+//   this.tips = text;
+// });
+// ipcRenderer.on("downloadProgress", (event, progressObj) => {
+//   console.log(progressObj);
+//   this.downloadPercent = progressObj.percent || 0;
+// });
+// ipcRenderer.on("isUpdateNow", () => {
+//   ipcRenderer.send("isUpdateNow");
+// });

@@ -2,34 +2,16 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="theme-color" content="#000000">
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
     <title>Document</title>
 </head>
 
 <body>
     <div id="root"></div>
 </body>
-<script src="./jquery-3.4.1.min.js"></script>
-<script>
-    const ipcRenderer = require('electron').ipcRenderer
-    ipcRenderer.send("checkForUpdate");
-    ipcRenderer.on("message", (event, text) => {
-        console.log(arguments);
-        this.tips = text;
-    });
-    ipcRenderer.on("downloadProgress", (event, progressObj) => {
-        console.log(progressObj);
-        this.downloadPercent = progressObj.percent || 0;
-    });
-    ipcRenderer.on("isUpdateNow", () => {
-        ipcRenderer.send("isUpdateNow");
-    });
-</script>
 
 </html>

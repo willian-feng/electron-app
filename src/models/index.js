@@ -6,5 +6,12 @@ export default {
     data: '',
   },
   effects: {},
-  reducers: {}
+  reducers: {
+    querySuccess(state, { payload }) {
+      return {
+        ...state,
+        ...payload
+      }
+    }
+  }
 }
