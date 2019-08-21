@@ -1,5 +1,6 @@
 import { createRoutes } from '../utils/core';
 import BasicLayout from '../basicLayout';
+import Home from './Home';
 import NotFound from './Pages/404';
 
 /**
@@ -13,10 +14,11 @@ import NotFound from './Pages/404';
 const routesConfig = app => [
   {
     path: '/',
-    title: '系统中心',
+    title: 'home',
     component: BasicLayout,
-    indexRoute: '/index',
+    indexRoute: '/home',
     childRoutes: [
+      Home(app),
       NotFound(),
     ]
   },

@@ -8,7 +8,7 @@ const feedUrl = `http://127.0.0.1:5500/win32`; // 更新包位置
 
 // 保持对window对象的全局引用，如果不这么做的话，当JavaScript对象被
 // 垃圾回收的时候，window对象将会自动的关闭
-let win, webContents;
+let win
 
 function createWindow() {
   // 创建浏览器窗口。
@@ -31,7 +31,7 @@ function createWindow() {
         protocol: 'file:',
         slashes: true
       });
-  win.loadFile(main);
+  win.loadURL(main);
 
   // 打开开发者工具
   win.webContents.openDevTools();
