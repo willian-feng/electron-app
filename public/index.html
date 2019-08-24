@@ -12,6 +12,22 @@
 
 <body>
   <div id="root"></div>
+  <script src="./jquery.min.js"></script>
+  <script>
+    var ipcRenderer = require('electron').ipcRenderer
+    ipcRenderer.send("checkForUpdate");
+    ipcRenderer.on("message", (event, text) => {
+      console.log(arguments);
+      this.tips = text;
+    });
+    ipcRenderer.on("downloadProgress", (event, progressObj) => {
+      console.log(progressObj);
+      this.downloadPercent = progressObj.percent || 0;
+    });
+    ipcRenderer.on("isUpdateNow", () => {
+      ipcRenderer.send("isUpdateNow");
+    });
+  </script>
 </body>
 
 </html>

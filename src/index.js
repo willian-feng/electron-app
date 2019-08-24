@@ -41,17 +41,3 @@ export default {
 // 如果想可以离线使用，请使用register()代替unregister()。可能会带来一些问题，如缓存等
 // 相关资料，可以从 https://bit.ly/CRA-PWA 了解
 unregister();
-
-// var ipcRenderer = require('electron').ipcRenderer
-// ipcRenderer.send("checkForUpdate");
-// ipcRenderer.on("message", (event, text) => {
-//   console.log(arguments);
-//   this.tips = text;
-// });
-// ipcRenderer.on("downloadProgress", (event, progressObj) => {
-//   console.log(progressObj);
-//   this.downloadPercent = progressObj.percent || 0;
-// });
-// ipcRenderer.on("isUpdateNow", () => {
-//   ipcRenderer.send("isUpdateNow");
-// });

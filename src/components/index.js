@@ -1,8 +1,9 @@
-//
-import PageLoading from './Loading/PageLoading';
-import Notification from './Notification';
+import HeaderBar from './HeaderBar';
+import FooterBar from './FooterBar';
+import LeftSideBar from './LeftSideBar';
 
 export {
-  PageLoading,
-  Notification,
+  HeaderBar,
+  FooterBar,
+  LeftSideBar
 }

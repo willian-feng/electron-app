@@ -1,8 +1,8 @@
 import {dynamicWrapper, createRoute} from '@/utils/core';
+import cfg from '../config';
 
 const routesConfig = (app) => ({
-  path: '/home',
-  title: '首页',
+  ...cfg.home,
   component: dynamicWrapper(app, [], () => import('./components'))
 });
 

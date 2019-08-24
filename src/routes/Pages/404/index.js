@@ -1,8 +1,9 @@
 import { createRoute } from '../../../utils/core';
+import cfg from '../../config';
 import P404 from './404';
 
 const routesConfig = (app) => ({
-  title: '页面没有找到',
+  ...cfg.notfond,
   component: P404,
 });
 
