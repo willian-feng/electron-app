@@ -1,9 +1,9 @@
-// import * as service from '../service';
+import { LEFT_MENU } from '../config';
 
 export default {
   namespace: 'global',
   state: {
-    data: '',
+    selectedKeys: [LEFT_MENU[0].key],                // 菜单已选项
   },
   effects: {},
   reducers: {

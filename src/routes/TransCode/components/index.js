@@ -1,13 +1,17 @@
 import React from 'react';
-import cc from './HeaderBar.module.less';
+import { connect } from 'dva';
+import cc from './index.module.less'
 
+@connect(state => ({
+  ...state.code
+}))
 export default class App extends React.Component {
   state = {}
 
   render() {
     return (
       <div className={cc.root}>
-        <span className={cc.logo}></span>
+        123 456
       </div>
     );
   }

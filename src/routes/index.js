@@ -1,6 +1,7 @@
 import { createRoutes } from '../utils/core';
-import BasicLayout from '../basicLayout';
+import BasicLayout from '../Layout/basicLayout';
 import Home from './Home';
+import TransCode from './TransCode';
 import NotFound from './Pages/404';
 
 /**
@@ -19,6 +20,7 @@ const routesConfig = app => [
     indexRoute: '/home',
     childRoutes: [
       Home(app),
+      TransCode(app),
       NotFound(),
     ]
   },
