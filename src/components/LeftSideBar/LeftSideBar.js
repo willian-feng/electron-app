@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
+import { Link } from 'dva/router';
 import { Menu, Icon } from 'antd';
 import { LEFT_MENU } from '@/config';
 import cc from './LeftSideBar.module.less';
@@ -19,6 +20,22 @@ export default class LeftSideBar extends React.Component {
     });
   }
 
+  getMenuItemPath = item => {
+    const { icon, title, target, key } = item;
+	console.log(this.props);
+    const { location = {} } = this.props;
+	const { pathname = '' } = location;
+    return (
+      <Link
+        to={key}
+        target={target}
+        replace={key === pathname}>
+        <Icon type={icon} />
+        <span>{title}</span>
+      </Link>
+    );
+  }
+
   render() {
     const { selectedKeys } = this.props;
     return (
@@ -27,8 +44,7 @@ export default class LeftSideBar extends React.Component {
         <Menu mode="inline" theme="dark" selectedKeys={selectedKeys} onClick={this.handleClick}>
           {LEFT_MENU.map(item => (
             <Menu.Item key={item.key}>
-              <Icon type={item.icon} />
-              <span>{item.title}</span>
+			  {this.getMenuItemPath(item)}
             </Menu.Item>
           ))}
         </Menu>
