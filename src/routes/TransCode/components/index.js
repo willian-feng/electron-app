@@ -1,5 +1,6 @@
 import React from 'react';
-import { Row, Col, Select, Input } from 'antd';
+import { Row, Col, Select, Input, Button } from 'antd';
+import CopyToClipboard from 'copy-to-clipboard'
 import { SELECT_LIST } from '../constants';
 import cc from './index.module.less';
 
@@ -16,7 +17,7 @@ export default class App extends React.Component {
   transformValue = value => {
     switch (this.state.rightSelect) {
       case keys['bin']:
-        return '';
+        return value;
       default:
         return value;
     }
@@ -38,7 +39,7 @@ export default class App extends React.Component {
   selectDiv = (isRight) => {
     const disabled = SELECT_LIST.find(select => select.value === this.state.leftSelect);
     return (
-      <Select onChange={value => this.selectChange(value, isRight)}>
+      <Select className={cc.select} onChange={value => this.selectChange(value, isRight)}>
         {SELECT_LIST.map(li => (
           <Select.Option key={li.value} value={li.value} disabled={isRight ? disabled : false}>
             {li.title}
@@ -57,13 +58,14 @@ export default class App extends React.Component {
             <Input.TextArea
               autosize={{ minRows: 15, maxRows: 15 }}
               value={this.state.leftValue}
-              onChange={this.inputChange} />
+              onChange={e => this.inputChange(e.target.value)} />
           </Col>
           <Col span={12}>
             {this.selectDiv(true)}
             <Input.TextArea
               autosize={{ minRows: 15, maxRows: 15 }}
               value={this.state.rightValue} />
+            <Button type={'primary'} onClick={() => CopyToClipboard(this.state.rightValue)}>复制</Button>
           </Col>
         </Row>
       </div>
